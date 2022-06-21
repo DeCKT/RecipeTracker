@@ -1,0 +1,64 @@
+GET http://localhost:3000/user HTTP/1.1
+
+###
+
+GET http://localhost:8080/journal/6272ada2ad2fc7cba2c7c12c HTTP/1.1
+
+###
+POST http://localhost:8080/journal/add HTTP/1.1
+content-type: application/json
+
+{
+        "entryName": "Happy Fun Times",
+        "date": "5/18/2022",
+        "body": "Today, I ate cake.",
+        "tags": "food",
+        "backColor": "white",
+        "font":"default"
+}
+
+###
+POST http://localhost:3000/user/ HTTP/1.1
+content-type: application/json
+
+{
+        "username": "sdfjkl",
+        "password": "fdsfsd"
+}
+###
+PUT http://localhost:8080/journal/628515217e9f698f738a6412 HTTP/1.1
+content-type: application/json
+
+{
+
+     "entryName": "Not happy",
+        "date": "5/18/2022",
+        "body": "I ran out of cake",
+        "tags": "food",
+        "backColor": "white",
+        "font":"default"
+}
+
+###
+DELETE http://localhost:8080/journal/628510fa380e3142551db563
+
+###
+GET https://week2personalassignment.herokuapp.com/journal
+
+###
+GET https://week2personalassignment.herokuapp.com/journal/6272ada2ad2fc7cba2c7c12c HTTP/1.1
+###
+POST https://week2personalassignment.herokuapp.com/journal/add HTTP/1.1
+content-type: application/json
+
+{
+        "entryName": "Happy Fun Times",
+        "date": "5/18/2022",
+        "body": "Today, I ate cake.",
+        "tags": "food",
+        "backColor": "white",
+        "font":"default"
+}
+
+###
+DELETE https://week2personalassignment.herokuapp.com/journal/6272afe42874f7fa940cce23
