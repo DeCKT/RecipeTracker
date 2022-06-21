@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Journal",
-    "description": "API for modifying a journal application",
+    "title": "Recipe Tracker",
+    "description": "API for modifying a recipe tracking application",
     "version": "1.0.0"
   },
   "host": "team-2-recipetracker.herokuapp.com",
@@ -77,22 +77,40 @@
             "schema": {
               "type": "object",
               "properties": {
-                "entryName": {
+                "title": {
                   "example": "any"
                 },
-                "date": {
+                "image": {
                   "example": "any"
                 },
-                "body": {
+                "ingredients": {
                   "example": "any"
                 },
-                "tags": {
+                "prices": {
                   "example": "any"
                 },
-                "backColor": {
+                "time": {
                   "example": "any"
                 },
-                "font": {
+                "servingSize": {
+                  "example": "any"
+                },
+                "instructions": {
+                  "example": "any"
+                },
+                "rating": {
+                  "example": "any"
+                },
+                "saved": {
+                  "example": "any"
+                },
+                "recipeBackstory": {
+                  "example": "any"
+                },
+                "recipeBook": {
+                  "example": "any"
+                },
+                "recipeCreator": {
                   "example": "any"
                 }
               }
@@ -144,22 +162,40 @@
             "schema": {
               "type": "object",
               "properties": {
-                "entryName": {
+                "title": {
                   "example": "any"
                 },
-                "date": {
+                "image": {
                   "example": "any"
                 },
-                "body": {
+                "ingredients": {
                   "example": "any"
                 },
-                "tags": {
+                "prices": {
                   "example": "any"
                 },
-                "backColor": {
+                "time": {
                   "example": "any"
                 },
-                "font": {
+                "servingSize": {
+                  "example": "any"
+                },
+                "instructions": {
+                  "example": "any"
+                },
+                "rating": {
+                  "example": "any"
+                },
+                "saved": {
+                  "example": "any"
+                },
+                "recipeBackstory": {
+                  "example": "any"
+                },
+                "recipeBook": {
+                  "example": "any"
+                },
+                "recipeCreator": {
                   "example": "any"
                 }
               }
