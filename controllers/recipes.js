@@ -38,13 +38,13 @@ const createEntry = async (req, res) => {
         recipeBook: req.body.recipeBook,
         recipeCreator: req.body.recipeCreator
     };
-    const result = await mongodb.getDb().db().collection('recipes').insertOne(journal);
+    const result = await mongodb.getDb().db().collection('recipes').insertOne(recipe);
 
     if (result.acknowledged) {
         res.status(201).json(result);
     } else {
         res.status(500).json(
-            result.error || 'Some error occurred while creating the journal entry.'
+            result.error || 'Some error occurred while creating the recipe entry.'
         );
     }
 };
@@ -76,7 +76,7 @@ const modifyEntry = async (req, res) => {
         res.status(201).json(result);
     } else {
         res.status(500).json(
-            result.error || 'Some error occurred while modifying the journal entry.'
+            result.error || 'Some error occurred while modifying the recipe entry.'
         );
     }
 };

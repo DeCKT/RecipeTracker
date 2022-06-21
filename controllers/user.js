@@ -27,7 +27,7 @@ module.exports.create = async (req, res) => {
             res.status(201).json(result);
         } else {
             res.status(500).json(
-                result.error || 'Some error occurred while creating the journal entry.'
+                result.error || 'Some error occurred while creating the recipe entry.'
             );
         }
     } catch (err) {
@@ -127,7 +127,7 @@ module.exports.deleteUser = async (req, res) => {
             res.status(204).json(result);
         } else {
             res.status(500).json(
-                result.error || 'Some error occurred while deleting the journal entry.'
+                result.error || 'Some error occurred while deleting the recipe entry.'
             );
         }
     } catch (err) {

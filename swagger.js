@@ -2,8 +2,8 @@ const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
     info: {
-        title: 'Journal',
-        description: 'API for modifying a journal application'
+        title: 'Recipe Tracker',
+        description: 'API for modifying a recipe tracking application'
     },
     host: 'team-2-recipetracker.herokuapp.com',
     // host: 'localhost:8080',
