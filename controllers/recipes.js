@@ -25,12 +25,18 @@ const getSingle = async (req, res) => {
 const createEntry = async (req, res) => {
     // #swagger.tags = ['Recipes']
     const recipe = {
-        entryName: req.body.entryName,
-        date: req.body.date,
-        body: req.body.body,
-        tags: req.body.tags,
-        backColor: req.body.backColor,
-        font: req.body.font
+        title: req.body.title,
+        image: req.body.image,
+        ingredients: req.body.ingredients,
+        prices: req.body.prices,
+        time: req.body.time,
+        servingSize: req.body.servingSize,
+        instructions: req.body.instructions,
+        rating: req.body.rating,
+        saved: req.body.saved,
+        recipeBackstory: req.body.recipeBackstory,
+        recipeBook: req.body.recipeBook,
+        recipeCreator: req.body.recipeCreator
     };
     const result = await mongodb.getDb().db().collection('recipes').insertOne(journal);
 
@@ -47,12 +53,18 @@ const modifyEntry = async (req, res) => {
     // #swagger.tags = ['Recipes']
     const userId = new ObjectId(req.params.id);
     const recipe = {
-        entryName: req.body.entryName,
-        date: req.body.date,
-        body: req.body.body,
-        tags: req.body.tags,
-        backColor: req.body.backColor,
-        font: req.body.font
+        title: req.body.title,
+        image: req.body.image,
+        ingredients: req.body.ingredients,
+        prices: req.body.prices,
+        time: req.body.time,
+        servingSize: req.body.servingSize,
+        instructions: req.body.instructions,
+        rating: req.body.rating,
+        saved: req.body.saved,
+        recipeBackstory: req.body.recipeBackstory,
+        recipeBook: req.body.recipeBook,
+        recipeCreator: req.body.recipeCreator
     };
     const result = await mongodb
         .getDb()
