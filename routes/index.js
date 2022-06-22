@@ -11,4 +11,6 @@ router.use('/recipes', requiresAuth(), require('./recipes'));
 
 router.use('/user', requiresAuth(), require('./user'));
 
+router.use('/comments', require('./comments'));
+
 module.exports = router;

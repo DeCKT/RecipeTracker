@@ -1,0 +1,6 @@
+POST http://localhost:3000/comments/recipe/62b1dd9e0e3c776ee34a3800 HTTP/1.1
+content-type: application/json
+
+{
+    "comment": "I like this recipe"
+}
