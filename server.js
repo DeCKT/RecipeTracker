@@ -28,6 +28,8 @@ app.get('/profile', requiresAuth(), (req, res) => {
 });
 app.use('/', require('./routes'));
 
+connect.connectDB();
+
 //Change
 connect.initDb((err) => {
     if (err) {
