@@ -13,4 +13,6 @@ router.use('/user', requiresAuth(), require('./user'));
 
 router.use('/comments', require('./comments'));
 
+router.use('/favorites', require('./favorites'));
+
 module.exports = router;

@@ -1,6 +1,14 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const mongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
+
+const URI = process.env.MONGODB_URI;
+
+const connectDB = () => {
+    mongoose.connect(URI);
+    console.log('Mongoose Connected');
+};
 
 let _db;
 
@@ -29,5 +37,6 @@ const getDb = () => {
 
 module.exports = {
     initDb,
-    getDb
+    getDb,
+    connectDB
 };

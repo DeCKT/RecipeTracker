@@ -30,6 +30,7 @@
         "googleapis": "^39.2.0",
         "joi-password-complexity": "^5.1.0",
         "mongodb": "^4.5.0",
+        "mongoose": "^6.4.0",
         "swagger-ui-express": "^4.3.0"
     },
     "devDependencies": {
