@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
@@ -13,6 +12,6 @@ let userSchema = new schema(
     }
 );
 
-const user = mongoose.model('trackerDB', userSchema);
+const user = mongoose.model('user', userSchema);
 
 module.exports = user;
