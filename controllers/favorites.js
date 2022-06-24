@@ -19,27 +19,28 @@ const gettingFavoritesRecipesFromOneUser = (req, res, next) => {
 };
 
 const updateUserFavorite = (req, res, next) => {
+    const usernamePara = req.params.username;
     var updateData = {
         username: req.body.username
     };
 
-    favorite.find({ username: updateData['username'] }).then((result) => {
-        res.send(result[0]);
+    favorite.find({ username: usernamePara }).then((result) => {
+        const id = result[0]['_id'];
+        const favorites = result[0]['favorites'];
+        updateData['favorites'] = favorites;
+        favorite.findByIdAndUpdate(id, updateData, () => {
+            res.send('Updated');
+        });
     });
 };
 
 const addFavoriteToUser = (req, res, next) => {
-    const username = req.params.username;
-    const recipeId = req.params.recipeId;
+    const username = req.body.username;
+    const recipeId = req.body.recipeId;
 
     recipe.find({ _id: recipeId }).then((result) => {
         let foodAdd = result;
         favorite.find({ username: username }).then((result) => {
-            // res.send(result[0]['favorites'][0]['_id']);
-            // res.send(foodAdd[0]['_id']);
-            // var numero = result[0]['favorites'].length;
-            // var copia = false;
-
             result[0]['favorites'].push(foodAdd[0]);
             let updateFavorite = result[0];
             favorite.findByIdAndUpdate(result[0]['_id'], updateFavorite, () => {

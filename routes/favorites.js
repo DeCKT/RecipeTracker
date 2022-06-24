@@ -12,9 +12,9 @@ router.get('/', gettingAllFavorites);
 
 router.get('/:username', gettingFavoritesRecipesFromOneUser);
 
-router.put('/', updateUserFavorite);
+router.put('/:username', updateUserFavorite);
 
-router.post('/:username/:recipeId', addFavoriteToUser);
+router.post('/', addFavoriteToUser);
 
 // router.delete('/:username', () => {
 //     console.log('Deleting one favorites recipe');

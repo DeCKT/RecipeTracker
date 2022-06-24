@@ -15,6 +15,7 @@ const config = {
     clientID: process.env.CLIENT_ID,
     issuerBaseURL: process.env.ISSUER_BASE_URL
 };
+connect.connectDB();
 
 // app.use(cors());
 app.use(express.json());
@@ -27,8 +28,6 @@ app.get('/profile', requiresAuth(), (req, res) => {
     res.send(JSON.stringify(req.oidc.user));
 });
 app.use('/', require('./routes'));
-
-connect.connectDB();
 
 //Change
 connect.initDb((err) => {
