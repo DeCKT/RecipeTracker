@@ -2,3 +2,18 @@ GET http://localhost:3000/favorites
 
 
 ###
+
+GET http://localhost:3000/favorites/Denis
+
+###
+
+PUT http://localhost:3000/favorites HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "Denis"
+}
+
+###
+
+POST http://localhost:3000/favorites/Denis/62b1dd9e0e3c776ee34a3800
