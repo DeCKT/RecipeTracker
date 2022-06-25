@@ -3,12 +3,14 @@ const recipe = require('../models/recipe');
 const favorite = require('../models/favorite');
 
 const gettingAllFavorites = (req, res, next) => {
+    // #swagger.tags = ['Favorites']
     favorite.find().then((result) => {
         res.send(result);
     });
 };
 
 const gettingFavoritesRecipesFromOneUser = (req, res, next) => {
+    // #swagger.tags = ['Favorites']
     const lookUp = { username: req.params.username };
 
     user.find(lookUp).then((result) => {
@@ -19,6 +21,7 @@ const gettingFavoritesRecipesFromOneUser = (req, res, next) => {
 };
 
 const updateUserFavorite = (req, res, next) => {
+    // #swagger.tags = ['Favorites']
     const usernamePara = req.params.username;
     var updateData = {
         username: req.body.username
@@ -35,6 +38,7 @@ const updateUserFavorite = (req, res, next) => {
 };
 
 const addFavoriteToUser = (req, res, next) => {
+    // #swagger.tags = ['Favorites']
     const username = req.body.username;
     const recipeId = req.body.recipeId;
 

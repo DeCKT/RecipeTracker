@@ -9,6 +9,7 @@ const ObjectId = require('mongodb').ObjectId;
 // getByUser
 
 const getById = async (req, res) => {
+    // #swagger.tags = ['Comments']
     const result = await mongodb.getDb().db().collection('comments').find({ _id: req.params.id });
     result.toArray().then((comments) => {
         res.setHeader('Content-Type', 'application/json');
@@ -17,6 +18,7 @@ const getById = async (req, res) => {
 };
 
 const createComment = async (req, res) => {
+    // #swagger.tags = ['Comments']
     const postDate = new Date();
     const comment = {
         recipeId: req.params.id,
@@ -34,6 +36,7 @@ const createComment = async (req, res) => {
 };
 
 const editComment = async (req, res) => {
+    // #swagger.tags = ['Comments']
     const commentId = new ObjectId(req.params.id);
 
     const result = await mongodb
