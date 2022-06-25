@@ -1,12 +1,16 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-// const getByRecipe = async (req, res) => {
+const getByRecipe = async (req, res) => {
+    // #swagger.tags = ['Comments']
+    console.log('Not Done, finish contract');
+    //  const result = await mongodb.getDb().db().collection('recipes').findOne({})
+};
 
-//     const result = await mongodb.getDb().db().collection('recipes').findOne({})
-// }
-
-// getByUser
+const getByUser = async (req, res) => {
+    // #swagger.tags = ['Comments']
+    console.log('Not Done, finish contract');
+};
 
 const getById = async (req, res) => {
     // #swagger.tags = ['Comments']
@@ -58,10 +62,16 @@ const editComment = async (req, res) => {
     }
 };
 
-// deleteComment
+const deleteComment = async (req, res) => {
+    // #swagger.tags = ['Comments']
+    console.log('Not Done, finish contract');
+};
 
 module.exports = {
+    getByRecipe,
+    getByUser,
     createComment,
     getById,
-    editComment
+    editComment,
+    deleteComment
 };

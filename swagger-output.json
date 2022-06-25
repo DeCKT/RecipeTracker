@@ -282,11 +282,10 @@
                 }
             }
         },
-        "/comments/{id}": {
+        "/comments/recipe/{id}": {
             "get": {
                 "tags": ["Comments"],
                 "description": "",
-                "produces": ["application/json"],
                 "parameters": [
                     {
                         "name": "id",
@@ -295,14 +294,8 @@
                         "type": "string"
                     }
                 ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        },
-        "/comments/recipe/{id}": {
+                "responses": {}
+            },
             "post": {
                 "tags": ["Comments"],
                 "description": "",
@@ -335,6 +328,86 @@
                         "description": "OK"
                     }
                 }
+            }
+        },
+        "/comments/user/{id}": {
+            "get": {
+                "tags": ["Comments"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/comments/{id}": {
+            "get": {
+                "tags": ["Comments"],
+                "description": "",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Comments"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "comment": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Comments"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {}
             }
         },
         "/favorites/": {

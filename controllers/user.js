@@ -76,37 +76,39 @@ module.exports.getUser = async (req, res) => {
     }
 };
 
-// module.exports.updateUser = async (req, res) => {
-//     try {
-//         const username = req.params.username;
-//         if (!username) {
-//             res.status(400).send({ message: 'Invalid Username Supplied' });
-//             return;
-//         }
-//         const password = req.body.password;
-//         const passwordCheck = passwordUtil.passwordPass(password);
-//         if (passwordCheck.error) {
-//             res.status(400).send({ message: passwordCheck.error });
-//             return;
-//         }
-//         User.findOne({ username: username }, function (err, user) {
-//             user.username = req.params.username;
-//             user.password = req.body.password;
-//             user.displayName = req.body.displayName;
-//             user.info = req.body.info;
-//             user.profile = req.body.profile;
-//             user.save(function (err) {
-//                 if (err) {
-//                     res.status(500).json(err || 'Some error occurred while updating the contact.');
-//                 } else {
-//                     res.status(204).send();
-//                 }
-//             });
-//         });
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// };
+module.exports.updateUser = async (req, res) => {
+    // #swagger.tags = ['Users']
+    // try {
+    //     const username = req.params.username;
+    //     if (!username) {
+    //         res.status(400).send({ message: 'Invalid Username Supplied' });
+    //         return;
+    //     }
+    //     const password = req.body.password;
+    //     const passwordCheck = passwordUtil.passwordPass(password);
+    //     if (passwordCheck.error) {
+    //         res.status(400).send({ message: passwordCheck.error });
+    //         return;
+    //     }
+    //     User.findOne({ username: username }, function (err, user) {
+    //         user.username = req.params.username;
+    //         user.password = req.body.password;
+    //         user.displayName = req.body.displayName;
+    //         user.info = req.body.info;
+    //         user.profile = req.body.profile;
+    //         user.save(function (err) {
+    //             if (err) {
+    //                 res.status(500).json(err || 'Some error occurred while updating the contact.');
+    //             } else {
+    //                 res.status(204).send();
+    //             }
+    //         });
+    //     });
+    // } catch (err) {
+    //     res.status(500).json(err);
+    // }
+    console.log('Not Done');
+};
 
 module.exports.deleteUser = async (req, res) => {
     // #swagger.tags = ['Users']
