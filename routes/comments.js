@@ -3,16 +3,16 @@ const router = express.Router();
 
 const commentsController = require('../controllers/comments');
 
-router.get('/recipe/:id', commentsController.getByRecipe);
+router.get('/recipe/:recipe_id', commentsController.getByRecipe);
 
-router.get('/user/:id', commentsController.getByUser);
+router.get('/user/:user_id', commentsController.getByUser);
 
-router.get('/:id', commentsController.getById);
+router.get('/:comment_id', commentsController.getById);
 
-router.post('/recipe/:id', commentsController.createComment);
+router.post('/recipe/:recipe_id', commentsController.createComment);
 
-router.put('/:id', commentsController.editComment);
+router.put('/:comment_id', commentsController.editComment);
 
-router.delete('/:id', commentsController.deleteComment);
+router.delete('/:comment_id', commentsController.deleteComment);
 
 module.exports = router;
