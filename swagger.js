@@ -18,3 +18,5 @@ const endpointsFiles = ['./routes/index.js'];
    such as index.js, app.js, routes.js, ... */
 
 swaggerAutogen(outputFile, endpointsFiles, doc);
+// "host": "team-2-recipetracker.herokuapp.com",
+// "host": "localhost:3000",
