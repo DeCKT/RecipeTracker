@@ -3,17 +3,42 @@ const ObjectId = require('mongodb').ObjectId;
 
 const getByRecipe = async (req, res) => {
     // #swagger.tags = ['Comments']
-    console.log('Not Done, finish contract');
-    //  const result = await mongodb.getDb().db().collection('recipes').findOne({})
+
+    // TODO: error handling
+
+    const result = await mongodb
+        .getDb()
+        .db()
+        .collection('comments')
+        .find({ recipeId: req.params.id });
+    result.toArray().then((comments) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(comments);
+    });
 };
 
 const getByUser = async (req, res) => {
     // #swagger.tags = ['Comments']
+
+    // TODO: error handling
+
     console.log('Not Done, finish contract');
+    const result = await mongodb
+        .getDb()
+        .db()
+        .collection('comments')
+        .find({ creatorId: req.params.id });
+    result.toArray().then((comments) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(comments);
+    });
 };
 
 const getById = async (req, res) => {
     // #swagger.tags = ['Comments']
+
+    // TODO: error handling
+
     const result = await mongodb.getDb().db().collection('comments').find({ _id: req.params.id });
     result.toArray().then((comments) => {
         res.setHeader('Content-Type', 'application/json');
@@ -23,6 +48,9 @@ const getById = async (req, res) => {
 
 const createComment = async (req, res) => {
     // #swagger.tags = ['Comments']
+
+    // TODO: error handling
+
     const postDate = new Date();
     const comment = {
         recipeId: req.params.id,
@@ -41,19 +69,22 @@ const createComment = async (req, res) => {
 
 const editComment = async (req, res) => {
     // #swagger.tags = ['Comments']
+
+    // TODO: error handling
+
     const commentId = new ObjectId(req.params.id);
+    const postDate = new Date();
 
     const result = await mongodb
         .getDb()
         .db()
         .collection('comments')
-        .findAndModify({
-            query: { _id: commentId },
-            update: {
-                $set: { comment: req.body.comment, edited: true },
-                $currentDate: { datePosted: { $type: 'date' } }
+        .updateOne(
+            { _id: commentId },
+            {
+                $set: { comment: req.body.comment, edited: true, postedDate: postDate }
             }
-        });
+        );
 
     if (result.acknowledged) {
         res.status(200).json(result);
@@ -64,7 +95,17 @@ const editComment = async (req, res) => {
 
 const deleteComment = async (req, res) => {
     // #swagger.tags = ['Comments']
-    console.log('Not Done, finish contract');
+
+    // TODO: error handling
+
+    const commentId = new ObjectId(req.params.id);
+    const result = await mongodb.getDb().db().collection('comments').deleteOne({ _id: commentId });
+
+    if (result.acknowledged) {
+        res.status(200).json(result);
+    } else {
+        res.status(400).json('error occurred!');
+    }
 };
 
 module.exports = {

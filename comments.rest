@@ -6,3 +6,20 @@ content-type: application/json
 }
 
 ###
+GET http://localhost:3000/comments/recipe/62b1dd9e0e3c776ee34a3800 HTTP/1.1
+
+###
+GET http://localhost:3000/comments/recipe/ HTTP/1.1
+
+# NOT READY
+
+###
+PUT http://localhost:3000/comments/62b3413624b80c0bc66b3bb0 HTTP/1.1
+content-type: application/json
+
+{
+    "comment": "this recipe is alright :/"
+}
+
+###
+DELETE http://localhost:3000/comments/62b3413624b80c0bc66b3bb0 HTTP/1.1

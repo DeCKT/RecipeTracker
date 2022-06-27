@@ -1,7 +1,7 @@
 {
-    "name": "cse341-apicourse-code",
+    "name": "recipe-tracker-app",
     "version": "1.0.0",
-    "description": "code to give to students for the cse341 course",
+    "description": "a recipe tracking app with CRUD operations",
     "main": "server.js",
     "scripts": {
         "swagger-autogen": "node ./swagger.js",
@@ -13,14 +13,11 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/nathanbirch/cse341-apiCourse-code.git"
+        "url": "git+https://github.com/DeCKT/RecipeTracker.git"
     },
-    "author": "Nathan Birch",
+    "author": "Team 2: Denis, Matthew, & Daniel",
     "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/nathanbirch/cse341-apiCourse-code/issues"
-    },
-    "homepage": "https://github.com/nathanbirch/cse341-apiCourse-code#readme",
+    "homepage": "https://github.com/DeCKT/RecipeTracker#readme",
     "dependencies": {
         "cors": "^2.8.5",
         "dotenv": "^16.0.1",
