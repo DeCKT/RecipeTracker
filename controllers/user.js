@@ -77,37 +77,37 @@ module.exports.getUser = async (req, res) => {
 };
 
 module.exports.updateUser = async (req, res) => {
-    // #swagger.tags = ['Users']
-    // try {
-    //     const username = req.params.username;
-    //     if (!username) {
-    //         res.status(400).send({ message: 'Invalid Username Supplied' });
-    //         return;
-    //     }
-    //     const password = req.body.password;
-    //     const passwordCheck = passwordUtil.passwordPass(password);
-    //     if (passwordCheck.error) {
-    //         res.status(400).send({ message: passwordCheck.error });
-    //         return;
-    //     }
-    //     User.findOne({ username: username }, function (err, user) {
-    //         user.username = req.params.username;
-    //         user.password = req.body.password;
-    //         user.displayName = req.body.displayName;
-    //         user.info = req.body.info;
-    //         user.profile = req.body.profile;
-    //         user.save(function (err) {
-    //             if (err) {
-    //                 res.status(500).json(err || 'Some error occurred while updating the contact.');
-    //             } else {
-    //                 res.status(204).send();
-    //             }
-    //         });
-    //     });
-    // } catch (err) {
-    //     res.status(500).json(err);
-    // }
-    console.log('Not Done');
+    //#swagger.tags = ['Users']
+    try {
+        const username = req.params.username;
+        if (!username) {
+            res.status(400).send({ message: 'Invalid Username Supplied' });
+            return;
+        }
+        const password = req.body.password;
+        const passwordCheck = passwordUtil.passwordPass(password);
+        if (passwordCheck.error) {
+            res.status(400).send({ message: passwordCheck.error });
+            return;
+        }
+        const user = {
+            username: req.body.username,
+            password: req.body.password
+        };
+        const result = await mongodb
+            .getDb()
+            .db()
+            .collection('users')
+            .replaceOne({ username: username }, user);
+
+        if (result.acknowledged) {
+            res.status(201).json(result);
+        } else {
+            res.status(500).json(result.error || 'Some error occurred while modifying the user.');
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
 };
 
 module.exports.deleteUser = async (req, res) => {
@@ -122,17 +122,14 @@ module.exports.deleteUser = async (req, res) => {
         const result = await mongodb
             .getDb()
             .db()
-            .collection('user')
-            .remove({ username: username }, true);
-
+            .collection('users')
+            .deleteOne({ username: username });
         if (result.deletedCount > 0) {
             res.status(204).json(result);
         } else {
-            res.status(500).json(
-                result.error || 'Some error occurred while deleting the recipe entry.'
-            );
+            res.status(500).json(result.error || 'Some error occurred while deleting the user.');
         }
     } catch (err) {
-        res.status(500).json(err || 'Some error occurred while deleting the contact.');
+        res.status(500).json(err || 'Some error occurred while deleting the user.');
     }
 };
