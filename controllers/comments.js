@@ -6,6 +6,8 @@ const getByRecipe = async (req, res) => {
 
     // TODO: error handling
 
+    console.log(req.params);
+
     if (!req.params.recipe_id) {
         res.status(500).json('Recipe ID is required!');
     } else {

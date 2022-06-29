@@ -6,3 +6,4 @@ content-type: application/json
 }
 
 ###
+GET http://localhost:3000/comments/recipe/46546 HTTP/1.1
