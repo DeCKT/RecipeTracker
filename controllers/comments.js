@@ -9,19 +9,23 @@ const getByRecipe = async (req, res) => {
     if (!req.params.recipe_id) {
         res.status(500).json('Recipe ID is required!');
     } else {
-        const result = await mongodb
-            .getDb()
-            .db()
-            .collection('comments')
-            .find({ recipeId: req.params.recipe_id });
-        result.toArray().then((comments) => {
-            if (comments.length > 0) {
-                res.setHeader('Content-Type', 'application/json');
-                res.status(200).json(comments);
-            } else {
-                res.status(404).json('Unable to find any comments');
-            }
-        });
+        try {
+            const result = await mongodb
+                .getDb()
+                .db()
+                .collection('comments')
+                .find({ recipeId: req.params.recipe_id });
+            result.toArray().then((comments) => {
+                if (comments.length > 0) {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.status(200).json(comments);
+                } else {
+                    res.status(404).json('Unable to find any comments');
+                }
+            });
+        } catch (error) {
+            res.status(500).json('An error occurred.');
+        }
     }
 };
 
