@@ -42,22 +42,10 @@ const addFavoriteToUser = (req, res, next) => {
     const username = req.body.username;
     const recipeId = req.body.recipeId;
 
-    // recipe.find({ _id: recipeId }).then((result) => {
-    //     let foodAdd = result;
-    //     favorite.find({ username: username }).then((result) => {
-    //         result[0]['favorites'].push(foodAdd);
-    //         let updateFavorite = result[0];
-    //         favorite.findByIdAndUpdate(result[0]['_id'], updateFavorite, () => {
-    //             res.send(updateFavorite);
-    //         });
-    //     });
-    // });
-
-    //Code above saves a whole recipe along with all of its data into the favorites.
     //We just want to store the IDs of the recipes we like.
 
     favorite.find({ username: username }).then((result) => {
-        fav = result[0]['favorites'];
+        let fav = result[0]['favorites'];
         fav.push(recipeId);
         let favoriteId = result[0]['_id'];
         let newFavoriteObj = result[0];
@@ -65,7 +53,29 @@ const addFavoriteToUser = (req, res, next) => {
         favorite.findByIdAndUpdate(favoriteId, newFavoriteObj, () => {
             res.send(fav);
         });
-        // result[0]['favorites'].push(foodAdd);
+    });
+};
+
+const creatingFavoriteForNewUser = (req, res, next) => {
+    const username = req.params.username;
+
+    favorite.find({ username: username }).then((result) => {
+        if (!result.length) {
+            let newData = { username: username, favorite: [] };
+            favorite.insertMany(newData);
+            res.send('CREATED');
+        }
+    });
+};
+
+const deletingFavorites = (req, res, next) => {
+    const username = req.params.username;
+    favorite.find({ username: username }).then((result) => {
+        let favoriteId = result[0]['_id'];
+        console.log(favoriteId);
+        favorite.findByIdAndDelete(favoriteId, () => {
+            res.send('DELETED!');
+        });
     });
 };
 
@@ -73,5 +83,7 @@ module.exports = {
     gettingAllFavorites,
     gettingFavoritesRecipesFromOneUser,
     updateUserFavorite,
-    addFavoriteToUser
+    addFavoriteToUser,
+    creatingFavoriteForNewUser,
+    deletingFavorites
 };

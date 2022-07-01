@@ -5,7 +5,9 @@ const {
     gettingAllFavorites,
     gettingFavoritesRecipesFromOneUser,
     updateUserFavorite,
-    addFavoriteToUser
+    addFavoriteToUser,
+    creatingFavoriteForNewUser,
+    deletingFavorites
 } = require('../controllers/favorites');
 
 router.get('/', gettingAllFavorites);
@@ -16,8 +18,8 @@ router.put('/:username', updateUserFavorite);
 
 router.post('/', addFavoriteToUser);
 
-// router.delete('/:username', () => {
-//     console.log('Deleting one favorites recipe');
-// });
+router.post('/:username', creatingFavoriteForNewUser);
+
+router.delete('/:username', deletingFavorites);
 
 module.exports = router;
