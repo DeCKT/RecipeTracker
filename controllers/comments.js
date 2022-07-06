@@ -104,7 +104,7 @@ const editComment = async (req, res) => {
         .update(
             { _id: commentId },
             {
-                $set: { comment: req.body.comment, edited: true, datePosted: editDate }
+                $set: { comment: req.body.comment, edited: true, postedDate: editDate }
             }
         );
 
@@ -117,7 +117,15 @@ const editComment = async (req, res) => {
 
 const deleteComment = async (req, res) => {
     // #swagger.tags = ['Comments']
-    console.log('Not Done, finish contract');
+
+    const commentId = new ObjectId(req.params.comment_id);
+
+    const result = await mongodb.getDb().db().collection('comments').remove({ _id: commentId });
+    if (result.acknowledged) {
+        res.status(200).json('Successfully removed comment');
+    } else {
+        res.status(500).json('error occurred!');
+    }
 };
 
 module.exports = {
