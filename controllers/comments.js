@@ -85,7 +85,7 @@ const createComment = async (req, res) => {
 
             if (result.acknowledged) {
                 res.setHeader('Content-Type', 'application/json');
-                res.status(200).json(result);
+                res.status(200).json('Successfully added comment');
             }
         } else {
             res.status(500).json('Unable to find recipe with ID');
@@ -113,7 +113,7 @@ const editComment = async (req, res) => {
         );
 
     if (result.acknowledged) {
-        res.status(200).json(result);
+        res.status(200).json('Successfully edited comment');
     } else {
         res.status(500).json('error occurred!');
     }
