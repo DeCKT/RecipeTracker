@@ -9,7 +9,7 @@ router.get('/user/:user_id', commentsController.getByUser);
 
 router.get('/:comment_id', commentsController.getById);
 
-router.post('/recipe/:comment_id', commentsController.createComment);
+router.post('/recipe/:recipe_id', commentsController.createComment);
 
 router.put('/:comment_id', commentsController.editComment);
 

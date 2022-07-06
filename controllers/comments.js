@@ -45,22 +45,46 @@ const getById = async (req, res) => {
     });
 };
 
+const recipeExists = async (recipeId) => {
+    const recipe = await mongodb.getDb().db().collection('recipes').find({ _id: recipeId });
+
+    return recipe.toArray().then((recipe) => {
+        if (recipe.length > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+};
+
 const createComment = async (req, res) => {
-    // #swagger.tags = ['Comments']
-    const postDate = new Date();
-    const comment = {
-        recipeId: req.params.id,
-        creatorId: req.body.creatorId,
-        postedDate: postDate,
-        comment: req.body.comment
-    };
+    try {
+        const postDate = new Date();
+        const recipeId = new ObjectId(req.params.recipe_id);
 
-    const result = await mongodb.getDb().db().collection('comments').insertOne(comment);
+        let recipeDoesExist = await recipeExists(recipeId);
 
-    if (result.acknowledged) {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(result);
+        if (recipeDoesExist) {
+            const comment = {
+                recipeId: recipeId,
+                creatorId: req.body.creatorId,
+                postedDate: postDate,
+                comment: req.body.comment
+            };
+
+            const result = await mongodb.getDb().db().collection('comments').insertOne(comment);
+
+            if (result.acknowledged) {
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).json(result);
+            }
+        } else {
+            res.status(500).json('Unable to find recipe with ID');
+        }
+    } catch (error) {
+        console.log(error);
     }
+    // #swagger.tags = ['Comments']
 };
 
 const editComment = async (req, res) => {
