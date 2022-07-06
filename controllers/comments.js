@@ -101,12 +101,12 @@ const editComment = async (req, res) => {
         .getDb()
         .db()
         .collection('comments')
-        .findAndModify({
-            query: { _id: commentId },
-            update: {
+        .update(
+            { _id: commentId },
+            {
                 $set: { comment: req.body.comment, edited: true, datePosted: editDate }
             }
-        });
+        );
 
     if (result.acknowledged) {
         res.status(200).json(result);
