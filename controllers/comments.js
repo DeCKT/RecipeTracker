@@ -24,7 +24,7 @@ const getByRecipe = async (req, res) => {
                     res.setHeader('Content-Type', 'application/json');
                     res.status(200).json(comments);
                 } else {
-                    res.status(404).json(comments);
+                    res.status(404).json('Unable to find any comments');
                 }
             });
         } catch (error) {
@@ -40,7 +40,10 @@ const getByUser = async (req, res) => {
 
 const getById = async (req, res) => {
     // #swagger.tags = ['Comments']
-    const result = await mongodb.getDb().db().collection('comments').find({ _id: req.params.id });
+
+    const commentId = new ObjectId(req.params.id);
+
+    const result = await mongodb.getDb().db().collection('comments').find({ _id: commentId });
     result.toArray().then((comments) => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(comments[0]);
