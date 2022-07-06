@@ -22,7 +22,7 @@ const getByRecipe = async (req, res) => {
                     res.setHeader('Content-Type', 'application/json');
                     res.status(200).json(comments);
                 } else {
-                    res.status(404).json('Unable to find any comments');
+                    res.status(404).json(comments);
                 }
             });
         } catch (error) {
