@@ -358,7 +358,7 @@
                 "produces": ["application/json"],
                 "parameters": [
                     {
-                        "name": "comment_id",
+                        "name": "recipe_id",
                         "in": "path",
                         "required": true,
                         "type": "string"
