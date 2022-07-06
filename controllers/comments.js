@@ -45,8 +45,12 @@ const getById = async (req, res) => {
 
     const result = await mongodb.getDb().db().collection('comments').find({ _id: commentId });
     result.toArray().then((comments) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(comments[0]);
+        if (comments.length > 0) {
+            res.setHeader('Content-Type', 'application/json');
+            res.status(200).json(comments[0]);
+        } else {
+            res.status(500).json('Unable to find comment');
+        }
     });
 };
 
