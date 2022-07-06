@@ -95,6 +95,7 @@ const createComment = async (req, res) => {
 const editComment = async (req, res) => {
     // #swagger.tags = ['Comments']
     const commentId = new ObjectId(req.params.comment_id);
+    const editDate = new Date();
 
     const result = await mongodb
         .getDb()
@@ -103,8 +104,7 @@ const editComment = async (req, res) => {
         .findAndModify({
             query: { _id: commentId },
             update: {
-                $set: { comment: req.body.comment, edited: true },
-                $currentDate: { datePosted: { $type: 'date' } }
+                $set: { comment: req.body.comment, edited: true, datePosted: editDate }
             }
         });
 
