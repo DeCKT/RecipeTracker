@@ -8,6 +8,8 @@ const getByRecipe = async (req, res) => {
 
     console.log(req.params);
 
+    const recipeId = new ObjectId(req.params.recipe_id);
+
     if (!req.params.recipe_id) {
         res.status(500).json('Recipe ID is required!');
     } else {
@@ -16,7 +18,7 @@ const getByRecipe = async (req, res) => {
                 .getDb()
                 .db()
                 .collection('comments')
-                .find({ recipeId: req.params.recipe_id });
+                .find({ recipeId: recipeId });
             result.toArray().then((comments) => {
                 if (comments.length > 0) {
                     res.setHeader('Content-Type', 'application/json');
