@@ -41,7 +41,7 @@ const getByUser = async (req, res) => {
 const getById = async (req, res) => {
     // #swagger.tags = ['Comments']
 
-    const commentId = new ObjectId(req.params.id);
+    const commentId = new ObjectId(req.params.comment_id);
 
     const result = await mongodb.getDb().db().collection('comments').find({ _id: commentId });
     result.toArray().then((comments) => {
