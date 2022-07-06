@@ -46,7 +46,7 @@ const getById = async (req, res) => {
     const result = await mongodb.getDb().db().collection('comments').find({ _id: commentId });
     result.toArray().then((comments) => {
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(comments);
+        res.status(200).json(comments[0]);
     });
 };
 
@@ -94,7 +94,7 @@ const createComment = async (req, res) => {
 
 const editComment = async (req, res) => {
     // #swagger.tags = ['Comments']
-    const commentId = new ObjectId(req.params.id);
+    const commentId = new ObjectId(req.params.comment_id);
 
     const result = await mongodb
         .getDb()
