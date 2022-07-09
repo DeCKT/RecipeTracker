@@ -21,7 +21,8 @@ connect.connectDB();
 app.use(express.json());
 app.use(auth(config));
 app.get('/', (req, res) => {
-    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+    let word = `Logged in <button onclick="window.location='https://raw.githack.com/elilaiono/recipe-tracker.github.io/main/index.html';" value="click here" /> Click Here`;
+    res.send(req.oidc.isAuthenticated() ? word : 'Logged out');
 });
 
 app.get('/profile', requiresAuth(), (req, res) => {
