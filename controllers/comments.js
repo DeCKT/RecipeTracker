@@ -35,7 +35,10 @@ const getByRecipe = async (req, res) => {
 
 const getByUser = async (req, res) => {
     // #swagger.tags = ['Comments']
-    console.log('Not Done, finish contract');
+
+    const userId = new ObjectId(req.params.user_id);
+
+    const result = await mongodb.getDb().db().collection('comments');
 };
 
 const getById = async (req, res) => {
