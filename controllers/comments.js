@@ -40,18 +40,21 @@ const getByUser = async (req, res) => {
 
 const getById = async (req, res) => {
     // #swagger.tags = ['Comments']
+    try {
+        const commentId = new ObjectId(req.params.comment_id);
 
-    const commentId = new ObjectId(req.params.comment_id);
-
-    const result = await mongodb.getDb().db().collection('comments').find({ _id: commentId });
-    result.toArray().then((comments) => {
-        if (comments.length > 0) {
-            res.setHeader('Content-Type', 'application/json');
-            res.status(200).json(comments[0]);
-        } else {
-            res.status(500).json('Unable to find comment');
-        }
-    });
+        const result = await mongodb.getDb().db().collection('comments').find({ _id: commentId });
+        result.toArray().then((comments) => {
+            if (comments.length > 0) {
+                res.setHeader('Content-Type', 'application/json');
+                res.status(200).json(comments[0]);
+            } else {
+                res.status(404).json('Unable to find comment');
+            }
+        });
+    } catch (error) {
+        res.status(500).json('An error occurred!');
+    }
 };
 
 const recipeExists = async (recipeId) => {
@@ -86,49 +89,60 @@ const createComment = async (req, res) => {
             if (result.acknowledged) {
                 res.setHeader('Content-Type', 'application/json');
                 res.status(200).json('Successfully added comment');
+            } else {
+                res.status(500).json('Unable to add comment');
             }
         } else {
-            res.status(500).json('Unable to find recipe with ID');
+            res.status(404).json('Unable to find recipe with ID');
         }
     } catch (error) {
-        console.log(error);
+        res.status(500).json('An error occurred!');
     }
     // #swagger.tags = ['Comments']
 };
 
 const editComment = async (req, res) => {
     // #swagger.tags = ['Comments']
-    const commentId = new ObjectId(req.params.comment_id);
-    const editDate = new Date();
 
-    const result = await mongodb
-        .getDb()
-        .db()
-        .collection('comments')
-        .update(
-            { _id: commentId },
-            {
-                $set: { comment: req.body.comment, edited: true, postedDate: editDate }
-            }
-        );
+    try {
+        const commentId = new ObjectId(req.params.comment_id);
+        const editDate = new Date();
 
-    if (result.acknowledged) {
-        res.status(200).json('Successfully edited comment');
-    } else {
-        res.status(500).json('error occurred!');
+        const result = await mongodb
+            .getDb()
+            .db()
+            .collection('comments')
+            .update(
+                { _id: commentId },
+                {
+                    $set: { comment: req.body.comment, edited: true, postedDate: editDate }
+                }
+            );
+
+        if (result.acknowledged) {
+            res.status(200).json('Successfully edited comment');
+        } else {
+            res.status(500).json('Unable to update comment');
+        }
+    } catch (error) {
+        res.status(500).json('An error occurred!');
     }
 };
 
 const deleteComment = async (req, res) => {
     // #swagger.tags = ['Comments']
 
-    const commentId = new ObjectId(req.params.comment_id);
+    try {
+        const commentId = new ObjectId(req.params.comment_id);
 
-    const result = await mongodb.getDb().db().collection('comments').remove({ _id: commentId });
-    if (result.acknowledged) {
-        res.status(200).json('Successfully removed comment');
-    } else {
-        res.status(500).json('error occurred!');
+        const result = await mongodb.getDb().db().collection('comments').remove({ _id: commentId });
+        if (result.acknowledged) {
+            res.status(200).json('Successfully removed comment');
+        } else {
+            res.status(500).json('Unable to delete comment');
+        }
+    } catch (error) {
+        res.status(500).json('An error occurred!');
     }
 };
 
