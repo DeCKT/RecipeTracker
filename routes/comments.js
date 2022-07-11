@@ -5,7 +5,7 @@ const commentsController = require('../controllers/comments');
 
 router.get('/recipe/:recipe_id', commentsController.getByRecipe);
 
-router.get('/user/:user_id', commentsController.getByUser);
+router.get('/user/:username', commentsController.getByUser);
 
 router.get('/:comment_id', commentsController.getById);
 

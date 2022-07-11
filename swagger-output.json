@@ -342,7 +342,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Success"
                     },
                     "404": {
                         "description": "Not Found"
@@ -369,7 +369,7 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "creatorId": {
+                                "username": {
                                     "example": "any"
                                 },
                                 "comment": {
@@ -381,18 +381,24 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
                     }
                 }
             }
         },
-        "/comments/user/{user_id}": {
+        "/comments/user/{username}": {
             "get": {
                 "tags": ["Comments"],
                 "description": "",
                 "parameters": [
                     {
-                        "name": "user_id",
+                        "name": "username",
                         "in": "path",
                         "required": true,
                         "type": "string"
@@ -417,6 +423,12 @@
                 "responses": {
                     "200": {
                         "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
                     }
                 }
             },
@@ -463,7 +475,14 @@
                         "type": "string"
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
             }
         },
         "/favorites/": {

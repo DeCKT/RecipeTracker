@@ -33,7 +33,7 @@ const getByRecipe = async (req, res) => {
 const getByUser = async (req, res) => {
     // #swagger.tags = ['Comments']
 
-    const userId = new ObjectId(req.params.user_id);
+    const user = new ObjectId(req.params.username);
 
     const result = await mongodb.getDb().db().collection('comments');
 };
@@ -83,7 +83,7 @@ const createComment = async (req, res) => {
         if (recipeDoesExist) {
             const comment = {
                 recipeId: recipeId,
-                creatorId: req.body.creatorId,
+                creator: req.body.username,
                 postedDate: postDate,
                 comment: req.body.comment
             };
@@ -144,8 +144,8 @@ const deleteComment = async (req, res) => {
         const commentId = new ObjectId(req.params.comment_id);
 
         const result = await mongodb.getDb().db().collection('comments').remove({ _id: commentId });
-        if (result.acknowledged) {
-            res.status(200).json(result);
+        if (result.acknowledged && deletedCount > 0) {
+            res.status(200).json('Successfully deleted comment');
         } else {
             res.status(500).json('Unable to delete comment');
         }
