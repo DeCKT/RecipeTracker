@@ -6,14 +6,11 @@ const getByRecipe = async (req, res) => {
 
     // TODO: error handling
 
-    console.log(req.params);
-
-    const recipeId = new ObjectId(req.params.recipe_id);
-
-    if (!req.params.recipe_id) {
-        res.status(500).json('Recipe ID is required!');
-    } else {
-        try {
+    try {
+        const recipeId = new ObjectId(req.params.recipe_id);
+        if (!req.params.recipe_id) {
+            res.status(500).json('Recipe ID is required!');
+        } else {
             const result = await mongodb
                 .getDb()
                 .db()
@@ -27,9 +24,9 @@ const getByRecipe = async (req, res) => {
                     res.status(404).json('Unable to find any comments');
                 }
             });
-        } catch (error) {
-            res.status(500).json('An error occurred.');
         }
+    } catch (error) {
+        res.status(500).json('An error occurred!');
     }
 };
 

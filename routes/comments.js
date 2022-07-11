@@ -15,4 +15,14 @@ router.put('/:comment_id', commentsController.editComment);
 
 router.delete('/:comment_id', commentsController.deleteComment);
 
+const ObjectId = require('mongodb').ObjectId; //remove
+router.get('/test/:id', async (req, res) => {
+    try {
+        const recipeId = new ObjectId(req.params.id);
+        res.json(recipeId);
+    } catch {
+        res.json('This no work');
+    }
+});
+
 module.exports = router;
