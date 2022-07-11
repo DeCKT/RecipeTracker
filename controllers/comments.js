@@ -76,7 +76,7 @@ const createComment = async (req, res) => {
 
         let recipeDoesExist = await recipeExists(recipeId);
 
-        if (!req.body.comment || !req.body.creatorId) {
+        if (!req.body.comment || !req.body.username) {
             throw new Error('Fields are required!');
         }
 
