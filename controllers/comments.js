@@ -100,7 +100,7 @@ const createComment = async (req, res) => {
             res.status(404).json('Unable to find recipe with ID');
         }
     } catch (error) {
-        res.status(500).json('An error occurred!');
+        res.status(500).json(error.message || 'An error occurred!');
     }
     // #swagger.tags = ['Comments']
 };
@@ -111,6 +111,10 @@ const editComment = async (req, res) => {
     try {
         const commentId = new ObjectId(req.params.comment_id);
         const editDate = new Date();
+
+        if (!req.body.comment) {
+            throw new Error('Fields are required!');
+        }
 
         const result = await mongodb
             .getDb()
@@ -129,7 +133,7 @@ const editComment = async (req, res) => {
             res.status(500).json('Unable to update comment');
         }
     } catch (error) {
-        res.status(500).json('An error occurred!');
+        res.status(500).json(error.message || 'An error occurred!');
     }
 };
 
