@@ -145,7 +145,7 @@ const deleteComment = async (req, res) => {
 
         const result = await mongodb.getDb().db().collection('comments').remove({ _id: commentId });
         if (result.acknowledged) {
-            res.status(200).json('Successfully removed comment');
+            res.status(200).json(`Successfully removed comment ${result}`);
         } else {
             res.status(500).json('Unable to delete comment');
         }
