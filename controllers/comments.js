@@ -76,6 +76,10 @@ const createComment = async (req, res) => {
 
         let recipeDoesExist = await recipeExists(recipeId);
 
+        if (!req.body.comment || !req.body.creatorId) {
+            throw
+        }
+
         if (recipeDoesExist) {
             const comment = {
                 recipeId: recipeId,
