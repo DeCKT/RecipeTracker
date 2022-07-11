@@ -150,7 +150,7 @@ const deleteComment = async (req, res) => {
             res.status(500).json('Unable to delete comment');
         }
     } catch (error) {
-        res.status(500).json('An error occurred!');
+        res.status(500).json(error.message || 'An error occurred!');
     }
 };
 
