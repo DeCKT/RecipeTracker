@@ -33,9 +33,11 @@ const getByRecipe = async (req, res) => {
 const getByUser = async (req, res) => {
     // #swagger.tags = ['Comments']
 
-    const user = new ObjectId(req.params.username);
-
-    const result = await mongodb.getDb().db().collection('comments');
+    try {
+        const result = await mongodb.getDb().db().collection('comments');
+    } catch (error) {
+        res.status(500).json('An error occurred!');
+    }
 };
 
 const getById = async (req, res) => {
@@ -76,7 +78,7 @@ const createComment = async (req, res) => {
 
         let recipeDoesExist = await recipeExists(recipeId);
 
-        if (!req.body.comment || !req.body.username) {
+        if (!req.body.comment || !req.body.email) {
             throw new Error('Fields are required!');
         }
 
