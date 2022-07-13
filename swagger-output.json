@@ -368,6 +368,9 @@
                                 "email": {
                                     "example": "any"
                                 },
+                                "email": {
+                                    "example": "any"
+                                },
                                 "username": {
                                     "example": "any"
                                 }
@@ -388,19 +391,25 @@
                 }
             }
         },
-        "/comments/user/{username}": {
+        "/comments/user/{email}": {
             "get": {
                 "tags": ["Comments"],
                 "description": "",
                 "parameters": [
                     {
-                        "name": "username",
+                        "email": "email",
                         "in": "path",
                         "required": true,
                         "type": "string"
                     }
                 ],
                 "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
                     "500": {
                         "description": "Internal Server Error"
                     }
@@ -478,6 +487,9 @@
                 "responses": {
                     "200": {
                         "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
                     },
                     "500": {
                         "description": "Internal Server Error"

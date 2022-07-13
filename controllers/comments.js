@@ -4,8 +4,6 @@ const ObjectId = require('mongodb').ObjectId;
 const getByRecipe = async (req, res) => {
     // #swagger.tags = ['Comments']
 
-    // TODO: error handling
-
     try {
         const recipeId = new ObjectId(req.params.recipe_id);
         if (!req.params.recipe_id) {
@@ -34,7 +32,11 @@ const getByUser = async (req, res) => {
     // #swagger.tags = ['Comments']
 
     try {
-        const result = await mongodb.getDb().db().collection('comments');
+        const result = await mongodb
+            .getDb()
+            .db()
+            .collection('comments')
+            .find({ email: req.params.email });
     } catch (error) {
         res.status(500).json('An error occurred!');
     }
@@ -149,7 +151,7 @@ const deleteComment = async (req, res) => {
         if (result.acknowledged && result.deletedCount) {
             res.status(200).json('Successfully deleted comment');
         } else {
-            res.status(500).json('Unable to delete comment');
+            res.status(400).json('Bad request!');
         }
     } catch (error) {
         res.status(500).json(error.message || 'An error occurred!');
