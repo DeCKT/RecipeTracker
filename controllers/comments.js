@@ -39,7 +39,7 @@ const getByUser = async (req, res) => {
                 .getDb()
                 .db()
                 .collection('comments')
-                .find({ username: req.params.email });
+                .find({ creator: req.params.username });
             result.toArray().then((found) => {
                 if (found.length > 0) {
                     res.setHeader('Content-Type', 'application/json');

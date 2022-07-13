@@ -60,13 +60,11 @@ content-type: application/json
         "font":"default"
 }
 
-###
-DELETE https://week2personalassignment.herokuapp.com/journal/6272afe42874f7fa940cce23
 
 ###
 GET http://localhost:3000/profile/ HTTP/1.1
 
 ###
-GET http://localhost:3000/comments/user/wow@gmail.com
-content-type: application/json
+GET http://localhost:3000/comments/user/matthewj151@gmail.com HTTP/1.1
+
 
