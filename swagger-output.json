@@ -368,9 +368,6 @@
                                 "email": {
                                     "example": "any"
                                 },
-                                "email": {
-                                    "example": "any"
-                                },
                                 "username": {
                                     "example": "any"
                                 }
@@ -391,13 +388,14 @@
                 }
             }
         },
-        "/comments/user/{email}": {
+        "/comments/user/{username}": {
             "get": {
                 "tags": ["Comments"],
                 "description": "",
+                "produces": ["application/json"],
                 "parameters": [
                     {
-                        "email": "email",
+                        "name": "username",
                         "in": "path",
                         "required": true,
                         "type": "string"
@@ -405,7 +403,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success"
+                        "description": "OK"
                     },
                     "404": {
                         "description": "Not Found"
