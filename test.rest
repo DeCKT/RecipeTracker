@@ -65,3 +65,8 @@ DELETE https://week2personalassignment.herokuapp.com/journal/6272afe42874f7fa940
 
 ###
 GET http://localhost:3000/profile/ HTTP/1.1
+
+###
+GET http://localhost:3000/comments/user/wow@gmail.com
+content-type: application/json
+
