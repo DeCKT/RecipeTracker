@@ -9,13 +9,6 @@
     "basePath": "/",
     "schemes": ["https", "http"],
     "paths": {
-        "/api-docs": {
-            "get": {
-                "description": "",
-                "parameters": [],
-                "responses": {}
-            }
-        },
         "/recipes/": {
             "get": {
                 "tags": ["Recipes"],
@@ -342,7 +335,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success"
+                        "description": "OK"
                     },
                     "404": {
                         "description": "Not Found"
@@ -369,10 +362,13 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "username": {
+                                "comment": {
                                     "example": "any"
                                 },
-                                "comment": {
+                                "email": {
+                                    "example": "any"
+                                },
+                                "username": {
                                     "example": "any"
                                 }
                             }
@@ -381,7 +377,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success"
+                        "description": "OK"
                     },
                     "404": {
                         "description": "Not Found"
@@ -404,7 +400,11 @@
                         "type": "string"
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
             }
         },
         "/comments/{comment_id}": {
@@ -571,6 +571,7 @@
                 }
             },
             "post": {
+                "tags": ["Favorites"],
                 "description": "",
                 "parameters": [
                     {
@@ -587,6 +588,7 @@
                 }
             },
             "delete": {
+                "tags": ["Favorites"],
                 "description": "",
                 "parameters": [
                     {
