@@ -5,7 +5,7 @@
     "main": "server.js",
     "scripts": {
         "swagger-autogen": "node ./swagger.js",
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "jest",
         "start": "nodemon server.js",
         "lint": "eslint .",
         "lint:fix": "eslint --fix",
@@ -37,8 +37,10 @@
         "eslint": "^8.14.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-prettier": "^4.0.0",
+        "jest": "^28.1.2",
         "nodemon": "^2.0.15",
         "prettier": "^2.6.2",
+        "supertest": "^6.2.4",
         "swagger-autogen": "^2.21.1"
     }
 }
