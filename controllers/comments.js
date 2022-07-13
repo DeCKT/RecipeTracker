@@ -32,11 +32,23 @@ const getByUser = async (req, res) => {
     // #swagger.tags = ['Comments']
 
     try {
-        const result = await mongodb
-            .getDb()
-            .db()
-            .collection('comments')
-            .find({ email: req.params.email });
+        if (!req.params.username) {
+            res.status(500).json('User email is required!');
+        } else {
+            const result = await mongodb
+                .getDb()
+                .db()
+                .collection('comments')
+                .find({ creator: req.params.username });
+            result.toArray().then((found) => {
+                if (found.length > 0) {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.status(200).json(found);
+                } else {
+                    res.status(404).json('Unable to find any comments');
+                }
+            });
+        }
     } catch (error) {
         res.status(500).json('An error occurred!');
     }

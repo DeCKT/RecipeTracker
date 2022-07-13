@@ -9,13 +9,6 @@
     "basePath": "/",
     "schemes": ["https", "http"],
     "paths": {
-        "/api-docs": {
-            "get": {
-                "description": "",
-                "parameters": [],
-                "responses": {}
-            }
-        },
         "/recipes/": {
             "get": {
                 "tags": ["Recipes"],
@@ -342,7 +335,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success"
+                        "description": "OK"
                     },
                     "404": {
                         "description": "Not Found"
@@ -369,10 +362,13 @@
                         "schema": {
                             "type": "object",
                             "properties": {
+                                "comment": {
+                                    "example": "any"
+                                },
                                 "email": {
                                     "example": "any"
                                 },
-                                "comment": {
+                                "username": {
                                     "example": "any"
                                 }
                             }
@@ -381,7 +377,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success"
+                        "description": "OK"
                     },
                     "404": {
                         "description": "Not Found"
@@ -392,13 +388,14 @@
                 }
             }
         },
-        "/comments/user/{email}": {
+        "/comments/user/{username}": {
             "get": {
                 "tags": ["Comments"],
                 "description": "",
+                "produces": ["application/json"],
                 "parameters": [
                     {
-                        "email": "email",
+                        "name": "username",
                         "in": "path",
                         "required": true,
                         "type": "string"
@@ -406,7 +403,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Success"
+                        "description": "OK"
                     },
                     "404": {
                         "description": "Not Found"
@@ -584,6 +581,7 @@
                 }
             },
             "post": {
+                "tags": ["Favorites"],
                 "description": "",
                 "parameters": [
                     {
@@ -600,6 +598,7 @@
                 }
             },
             "delete": {
+                "tags": ["Favorites"],
                 "description": "",
                 "parameters": [
                     {

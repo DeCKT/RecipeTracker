@@ -57,6 +57,7 @@ const addFavoriteToUser = (req, res, next) => {
 };
 
 const creatingFavoriteForNewUser = (req, res, next) => {
+    // #swagger.tags = ['Favorites']
     const username = req.params.username;
 
     favorite.find({ username: username }).then((result) => {
@@ -69,6 +70,7 @@ const creatingFavoriteForNewUser = (req, res, next) => {
 };
 
 const deletingFavorites = (req, res, next) => {
+    // #swagger.tags = ['Favorites']
     const username = req.params.username;
     favorite.find({ username: username }).then((result) => {
         let favoriteId = result[0]['_id'];
