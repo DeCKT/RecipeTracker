@@ -59,7 +59,7 @@ module.exports.getUser = async (req, res) => {
     // #swagger.tags = ['Users']
     try {
         const username = req.params.username;
-        const result = await mongodb.getDb().db().collection('users').find({ username: username });
+        const result = await mongodb.getDb().db().collection('users').find({ email: username });
         result
             .toArray()
             .then((lists) => {
@@ -98,7 +98,15 @@ module.exports.updateUser = async (req, res) => {
             .getDb()
             .db()
             .collection('users')
-            .replaceOne({ username: username }, user);
+            .updateOne(
+                { email: username },
+                {
+                    $set: {
+                        email: req.body.username,
+                        password: req.body.password
+                    }
+                }
+            );
 
         if (result.acknowledged) {
             res.status(201).json(result);
@@ -123,7 +131,7 @@ module.exports.deleteUser = async (req, res) => {
             .getDb()
             .db()
             .collection('users')
-            .deleteOne({ username: username });
+            .deleteOne({ email: username });
         if (result.deletedCount > 0) {
             res.status(204).json(result);
         } else {
