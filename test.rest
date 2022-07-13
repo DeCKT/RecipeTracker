@@ -62,3 +62,6 @@ content-type: application/json
 
 ###
 DELETE https://week2personalassignment.herokuapp.com/journal/6272afe42874f7fa940cce23
+
+###
+GET http://localhost:3000/profile/ HTTP/1.1
