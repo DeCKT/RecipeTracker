@@ -34,6 +34,16 @@ app.get('/profile', requiresAuth(), (req, res) => {
 });
 app.use('/', require('./routes'));
 
+app.use((err, req, res, next) => {
+    // res.send(err.status);
+    res.send({
+        error: {
+            status: err.status || 500,
+            message: err.message
+        }
+    });
+});
+
 //Change
 connect.initDb((err) => {
     if (err) {

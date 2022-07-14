@@ -3,7 +3,7 @@ GET http://localhost:3000/favorites
 
 ###
 
-GET http://localhost:3000/favorites/Denis
+GET http://localhost:3000/favorites/Lo
 
 ###
 
@@ -20,7 +20,7 @@ POST http://localhost:3000/favorites HTTP/1.1
 content-type: application/json
 
 {
-    "username": "Pedro",
+    "username": "lol",
     "recipeId": "62b1dd9e0e3c776ee34a3800"
 }
 ###
