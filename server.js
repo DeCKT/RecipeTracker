@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 app.get('/profile', requiresAuth(), (req, res) => {
     res.send(JSON.stringify(req.oidc.user));
 });
-app.use('/', require('./routes'));
+app.use('/', requiresAuth(), require('./routes'));
 
 app.use((err, req, res, next) => {
     // res.send(err.status);
